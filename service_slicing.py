@@ -50,6 +50,7 @@ class TrafficSlicing(app_manager.RyuApp):
         mod = parser.OFPFlowMod(
             datapath=datapath, priority=priority, match=match, instructions=inst
         )
+        self.logger.info("add_flow.datapath.send_msg(%s)", vars(mod))
         datapath.send_msg(mod)
 
     def _send_package(self, msg, datapath, in_port, actions):
@@ -65,6 +66,7 @@ class TrafficSlicing(app_manager.RyuApp):
             actions=actions,
             data=data,
         )
+        self.logger.info("_send_package.datapath.send_msg(%s)", vars(out))
         datapath.send_msg(out)
 
     @set_ev_cls(ofp_event.EventOFPPacketIn, MAIN_DISPATCHER)
