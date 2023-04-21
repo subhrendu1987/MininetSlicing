@@ -102,7 +102,7 @@ class TrafficSlicing(app_manager.RyuApp):
                     in_port=in_port,
                     eth_dst=dst,
                     eth_type=ether_types.ETH_TYPE_IP,
-                    ip_proto=0x11,  # udp
+                    ip_proto=0x11,  # UDP slice-1
                     udp_dst=self.slice_TCport,
                 )
 
@@ -118,7 +118,7 @@ class TrafficSlicing(app_manager.RyuApp):
                     eth_dst=dst,
                     eth_src=src,
                     eth_type=ether_types.ETH_TYPE_IP,
-                    ip_proto=0x11,  # udp
+                    ip_proto=0x11,  # UDP slice-2
                     udp_dst=pkt.get_protocol(udp.udp).dst_port,
                 )
                 actions = [datapath.ofproto_parser.OFPActionOutput(out_port)]
@@ -133,7 +133,7 @@ class TrafficSlicing(app_manager.RyuApp):
                     eth_dst=dst,
                     eth_src=src,
                     eth_type=ether_types.ETH_TYPE_IP,
-                    ip_proto=0x06,  # tcp
+                    ip_proto=0x06,  # TCP
                 )
                 actions = [datapath.ofproto_parser.OFPActionOutput(out_port)]
                 self.add_flow(datapath, 1, match, actions)
@@ -147,7 +147,7 @@ class TrafficSlicing(app_manager.RyuApp):
                     eth_dst=dst,
                     eth_src=src,
                     eth_type=ether_types.ETH_TYPE_IP,
-                    ip_proto=0x01,  # icmp
+                    ip_proto=0x01,  # ICMP
                 )
                 actions = [datapath.ofproto_parser.OFPActionOutput(out_port)]
                 self.add_flow(datapath, 1, match, actions)
