@@ -87,13 +87,13 @@ class L3Switch(app_manager.RyuApp):
             arp = pkt.get_protocols(arp.arp)[0]
             dst = arp.dst
             src = arp.src
-            self.logger.info("ARP_Pkt={dpid=%s,inport=%s,src:%s,dst=%s}",dpid,in_port,src,dst)
+            self.logger.info("ARP_Pkt={dpid=%s,inport=%s,src=%s,dst=%s}",dpid,in_port,src,dst)
         elif eth.ethertype == ether_types.ETH_TYPE_IP:
             # IPv4 Packet
             ip = pkt.get_protocols(ipv4.ipv4)[0]
             dst = ip.dst
             src = ip.src
-            self.logger.info("IP_Pkt={dpid=%s,inport=%s,src:%s,dst=%s}",dpid,in_port,src,dst)
+            self.logger.info("IP_Pkt={dpid=%s,inport=%s,src=%s,dst=%s}",dpid,in_port,src,dst)
         else:
             # Ignore non-IP packet
             return
